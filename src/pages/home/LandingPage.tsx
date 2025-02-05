@@ -4,7 +4,7 @@ import Grid from "@mui/material/Grid2";
 
 const LandingPage = () => {
   return (
-    <Container
+    <Box
       maxWidth="false"
       sx={{
         minHeight: "80vh",
@@ -80,7 +80,7 @@ const LandingPage = () => {
           />
         </Grid>
       </Grid>
-    </Container>
+    </Box>
   );
 };
 
