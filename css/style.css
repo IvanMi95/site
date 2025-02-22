@@ -8887,9 +8887,6 @@ ul.wp-block-latest-posts.is-grid.alignwide {
     -ms-transform: inherit;
     transform: inherit;
   }
-  .slider-sticky-icon-2 {
-    display: none;
-  }
   
 }
 
@@ -8923,6 +8920,10 @@ ul.wp-block-latest-posts.is-grid.alignwide {
 }
 
 @media (max-width: 1199px) {
+  .slider-sticky-icon-2 {
+    display: none;
+  }
+
   .slide-title {
     font-size: 36px;
   }
