@@ -14504,12 +14504,23 @@ blockquote::before {
 /* ----------------------------------------------------
     Contact Form Area
 ---------------------------------------------------- */
+.ltn__contact-address-area .row {
+  display: flex;
+  flex-wrap: wrap; /* ensure proper wrapping on smaller screens */
+  align-items: stretch;
+}
+.ltn__contact-address-area  .col-lg-4 {
+  display: flex;
+  flex-direction: column;
+}
+
 .ltn__contact-address-item {
   padding: 40px 30px 10px;
   text-align: center;
   -webkit-box-shadow: var(--ltn__box-shadow-2);
   box-shadow: var(--ltn__box-shadow-2);
   margin-bottom: 30px;
+  flex: 1;
 }
 
 .ltn__contact-address-item i {
