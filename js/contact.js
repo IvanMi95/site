@@ -2,6 +2,25 @@ function sendMail(event) {
   event.stopPropagation();
   var recaptchaResponse = grecaptcha.getResponse();
   var messageBox = document.getElementById("form-response-message");
+  var checkbox = document.querySelector("input[name='agree']");
+  var name = document.getElementById("name").value.trim();
+  var phone = document.getElementById("phone").value.trim();
+
+  if (!checkbox.checked) {
+    messageBox.innerHTML = "<p>Devi accettare l'informativa sulla privacy.</p>";
+    messageBox.style.backgroundColor = "#ffdddd";
+    messageBox.style.color = "#d8000c";
+    messageBox.style.display = "block";
+    return;
+  }
+
+  if (name === "" || phone === "") {
+    messageBox.innerHTML = "<p>Nome e numero di telefono sono obbligatori.</p>";
+    messageBox.style.backgroundColor = "#ffdddd";
+    messageBox.style.color = "#d8000c";
+    messageBox.style.display = "block";
+    return;
+  }
 
   if (!recaptchaResponse) {
     messageBox.innerHTML = "<p>Per favore completa la verifica reCAPTCHA.</p>";
@@ -13,9 +32,9 @@ function sendMail(event) {
 
   var params = {
     "request": document.getElementById("request").value,
-    "name": document.getElementById("name").value,
+    "name": name,
     "email": document.getElementById("email").value,
-    "phone": document.getElementById("phone").value,
+    "phone": phone,
     "message": document.getElementById("message").value,
     "g-recaptcha-response": recaptchaResponse,
   };
@@ -35,6 +54,8 @@ function sendMail(event) {
       messageBox.style.backgroundColor = "#d4edda";
       messageBox.style.color = "#155724";
       messageBox.style.display = "block";
+      
+
     })
     .catch((err) => {
       messageBox.innerHTML = "<p style='margin: 0' >Si è verificato un errore. Riprova più tardi.</p>";
@@ -42,6 +63,6 @@ function sendMail(event) {
       messageBox.style.color = "#d8000c";
       messageBox.style.display = "block";
     });
-
-  grecaptcha.reset();
+    
+    grecaptcha.reset();
 }
