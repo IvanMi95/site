@@ -1,5 +1,6 @@
 function sendMail(event) {
-  event.stopPropagation();
+  event.preventDefault();
+  
   var recaptchaResponse = grecaptcha.getResponse();
   var messageBox = document.getElementById("form-response-message");
   var checkbox = document.querySelector("input[name='agree']");
@@ -63,6 +64,6 @@ function sendMail(event) {
       messageBox.style.color = "#d8000c";
       messageBox.style.display = "block";
     });
-    
+
     grecaptcha.reset();
 }
