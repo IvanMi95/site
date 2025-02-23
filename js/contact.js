@@ -1,50 +1,26 @@
-/* Contact Form Dynamic */
-
-$(function() {
-
-	// Get the form.
-	var form = $('#contact-form');
-
-	// Get the messages div.
-	var formMessages = $('.form-messege');
-
-	// Set up an event listener for the contact form.
-	$(form).submit(function(e) {
-		// Stop the browser from submitting the form.
-		e.preventDefault();
-
-		// Serialize the form data.
-		var formData = $(form).serialize();
-
-		// Submit the form using AJAX.
-		$.ajax({
-			type: 'POST',
-			url: $(form).attr('action'),
-			data: formData
-		})
-		.done(function(response) {
-			// Make sure that the formMessages div has the 'success' class.
-			$(formMessages).removeClass('error');
-			$(formMessages).addClass('success');
-
-			// Set the message text.
-			$(formMessages).text(response);
-
-			// Clear the form.
-			$('#contact-form input,#contact-form textarea').val('');
-		})
-		.fail(function(data) {
-			// Make sure that the formMessages div has the 'error' class.
-			$(formMessages).removeClass('success');
-			$(formMessages).addClass('error');
-
-			// Set the message text.
-			if (data.responseText !== '') {
-				$(formMessages).text(data.responseText);
-			} else {
-				$(formMessages).text('Oops! An error occured and your message could not be sent.');
-			}
-		});
-	});
-
-});
+function sendMail(event) {
+  event.preventDefault();
+  var recaptchaResponse = grecaptcha.getResponse();
+  if (!recaptchaResponse) {
+    alert("Per favore completa la verifica reCAPTCHA.");
+    return;
+  }
+  var params = {
+    "request": document.getElementById("request").value,
+    "name": document.getElementById("name").value,
+    "email": document.getElementById("email").value,
+    "phone": document.getElementById("phone").value,
+    "message": document.getElementById("message").value,
+    "g-recaptcha-response": recaptchaResponse,
+  };
+  const TEMPLATE_ID = "template_wavbo3i";
+  const SERVICE_ID = "service_dzj1bll";
+  emailjs.send(SERVICE_ID, TEMPLATE_ID, params).then((res) => {
+    document.getElementById("request").value = "Seleziona il tipo di servizio";
+    document.getElementById("name").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("phone").value = "";
+    document.getElementById("message").value = "";
+  })
+  grecaptcha.reset();
+}
