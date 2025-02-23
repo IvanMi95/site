@@ -1,5 +1,5 @@
 function sendMail(event) {
-  event.preventDefault();
+  event.stopPropagation();
   var recaptchaResponse = grecaptcha.getResponse();
   if (!recaptchaResponse) {
     alert("Per favore completa la verifica reCAPTCHA.");
