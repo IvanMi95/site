@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /private/
+Disallow: /tmp/
+Disallow: /cgi-bin/
+Disallow: /wp-admin/  # Only if you migrated from WordPress
+Allow: /
+
+Sitemap: https://sgsimmobiliare.com/sitemap.xml

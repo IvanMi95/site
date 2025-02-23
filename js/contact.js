@@ -1,6 +1,6 @@
 function sendMail(event) {
   event.preventDefault();
-  
+
   var recaptchaResponse = grecaptcha.getResponse();
   var messageBox = document.getElementById("form-response-message");
   var checkbox = document.querySelector("input[name='agree']");
@@ -50,6 +50,8 @@ function sendMail(event) {
       document.getElementById("email").value = "";
       document.getElementById("phone").value = "";
       document.getElementById("message").value = "";
+      checkbox.checked = false;
+
       
       messageBox.innerHTML = "<p style='margin: 0'>Il tuo messaggio è stato inviato con successo!</p>";
       messageBox.style.backgroundColor = "#d4edda";
